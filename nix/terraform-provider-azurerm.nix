@@ -14,7 +14,7 @@ buildGoModule rec {
   };
 
   vendorSha256 = null;
-  provider-source-address = "registry.terraform.io/providers/hashicorp/azurerm/latest/docs";
+  provider-source-address = "registry.terraform.io/hashicorp/azurerm";
   postInstall = ''
     dir=$out/libexec/terraform-providers/${provider-source-address}/${version}/''${GOOS}_''${GOARCH}
     mkdir -p $dir
@@ -23,7 +23,7 @@ buildGoModule rec {
   '';
 
   meta = with lib; {
-    homepage = "https://docs.usacloud.jp/terraform";
+    homepage = "https://registry.terraform.io/providers/hashicorp/azurerm";
     description = "Lifecycle management of Microsoft Azure using the Azure Resource Manager APIs. maintained by the Azure team at Microsoft and the Terraform team at HashiCorp";
     license = licenses.mpl20;
     platforms = platforms.linux ++ platforms.darwin;
