@@ -1,0 +1,7 @@
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+/result
+/result-*
+.envrc
+.direnv
