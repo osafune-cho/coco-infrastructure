@@ -1,0 +1,29 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  nixpkgs-fmt:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+      - run: nix-env -f ./nix/pkgs.nix -iA nixpkgs-fmt
+      - run: |
+          find . -name '*.nix' -print0 | while IFS= read -r -d '' file; do
+            nixpkgs-fmt --check "$file"
+          done      
+  terraform-fmt:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+      - run: nix-env -f ./nix/terraform.nix -i
+      - run: terraform fmt -check -recursive
+  terraform-validate:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+      - run: nix-env -f ./nix/terraform.nix -i
+      - run: terraform init -backend=false
+      - run: terraform validate
