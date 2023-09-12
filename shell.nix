@@ -6,5 +6,6 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     terraform
     nixpkgs-fmt
+    azure-cli
   ];
 }
