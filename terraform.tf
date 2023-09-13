@@ -11,6 +11,11 @@ terraform {
       source  = "hashicorp/random"
       version = "=3.5.1"
     }
+
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+      version = "=4.10.0"
+    }
   }
 
   backend "remote" {
