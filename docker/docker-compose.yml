@@ -3,7 +3,6 @@ services:
   coco:
     container_name: coco
     image: ghcr.io/osafune-cho/coco:latest
-    restart: always
     ports:
       - 8181:8181
     environment:
