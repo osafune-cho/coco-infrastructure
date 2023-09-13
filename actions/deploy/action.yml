@@ -1,0 +1,27 @@
+name: Deploy to Server
+inputs:
+  ssh_private_key:
+    description: 'SSH private key'
+    required: true
+  ssh_host_name:
+    description: 'SSH host name'
+    required: true
+  ssh_user_name:
+    description: 'SSH user name'
+    required: true
+  ssh_dist_path:
+    description: 'SSH dist path'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: deploy
+      shell: bash --noprofile --norc -eou pipefail {0}
+      env:
+        ssh_private_key: ${{ inputs.ssh_private_key }}
+        ssh_host_name: ${{ inputs.ssh_host_name }}
+        ssh_user_name: ${{ inputs.ssh_user_name }}
+        ssh_dist_path: ${{ inputs.ssh_dist_path }}
+      run: |
+        "${{ github.action_path }}/../../../scripts/deploy.sh" \
+          "$SSH_PRIVATE_KEY" "$SSH_HOST_NAME" "$SSH_USER_NAME" "$SSH_DIST_PATH"
