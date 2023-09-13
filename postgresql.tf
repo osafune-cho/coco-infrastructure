@@ -15,6 +15,14 @@ resource "azurerm_postgresql_server" "postgresql_server" {
   ssl_enforcement_enabled      = true
 }
 
+resource "azurerm_postgresql_database" "coco_database" {
+  name                = "coco"
+  resource_group_name = azurerm_resource_group.region.name
+  server_name         = azurerm_postgresql_server.postgresql_server.name
+  charset             = "UTF8"
+  collation           = "English_United States.1252"
+}
+
 resource "azurerm_postgresql_firewall_rule" "postgresql_firewall_rule" {
   name                = "AllowAllWindowsAzureIps"
   server_name         = azurerm_postgresql_server.postgresql_server.name
