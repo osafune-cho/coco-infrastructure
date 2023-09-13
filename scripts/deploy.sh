@@ -20,6 +20,6 @@ scp -r -i ./ssh_private_key ./coco-infrastructure/caddy "$ssh_user_name"@"$ssh_h
 
 ssh -i ./ssh_private_key "$ssh_user_name"@"$ssh_host_name" <<"EOC"
   cd "$ssh_dist_path"
-  docker compose down
-  docker compose up -d
+  sudo -i docker compose -f $HOME/docker-compose.yml down
+  sudo -i docker compose -f $HOME/docker-compose.yml up -d
 EOC
