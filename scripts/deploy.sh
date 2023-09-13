@@ -15,6 +15,8 @@ ssh-add ./ssh_private_key
 mkdir -p ~/.ssh/
 ssh-keyscan -H "$ssh_host_name" >> ~/.ssh/known_hosts
 
+pwd
+ls -la
 scp -r -i ./ssh_private_key ./docker/docker-compose.yml "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"
 scp -r -i ./ssh_private_key ./caddy/Caddyfile "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"/caddy
 
