@@ -3,6 +3,6 @@ resource "random_id" "random_id" {
 }
 
 resource "random_password" "postgresql_password" {
-  length = 16
+  length  = 16
   special = true
 }
