@@ -37,3 +37,10 @@ jobs:
       - run: rm .terraform.lock.hcl
       - run: terraform init -backend=false
       - run: terraform validate
+  shellcheck:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+      - run: nix-env -f ./nix/shellcheck.nix -i
+      - run: shellcheck -x -s bash **/*.sh

@@ -7,5 +7,6 @@ pkgs.mkShell {
     terraform
     nixpkgs-fmt
     azure-cli
+    shellcheck
   ];
 }
