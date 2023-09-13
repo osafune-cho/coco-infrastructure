@@ -20,7 +20,7 @@ resource "azurerm_virtual_machine" "vm" {
       "${path.module}/scripts/cloud-init.sh",
       {
         DB_HOST                      = azurerm_postgresql_server.postgresql_server.fqdn
-        DB_USER                      = "coco"
+        DB_USER                      = "coco@${split(".", azurerm_postgresql_server.postgresql_server.fqdn)[0]}"
         DB_PASSWORD                  = random_password.postgresql_password.result
         DB_NAME                      = "coco"
         DB_PORT                      = 5432
