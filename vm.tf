@@ -16,14 +16,19 @@ resource "azurerm_virtual_machine" "vm" {
     computer_name  = "coco-vm"
     admin_username = "coco"
 
-    custom_data = <<-CUSTOM_DATA
-      #!/bin/bash
-      echo "export DB_HOST=${azurerm_postgresql_server.postgresql_server.fqdn}" >> /etc/profile
-      echo "export DB_USER=coco" >> /etc/profile
-      echo "export DB_PASSWORD=${random_password.postgresql_password.result}" >> /etc/profile
-      echo "export DB_NAME=coco" >> /etc/profile
-      echo "export DB_PORT=5432" >> /etc/profile
-    CUSTOM_DATA
+    custom_data = templatefile(
+      "${path.module}/scripts/cloud-init.sh",
+      {
+        DB_HOST     = azurerm_postgresql_server.postgresql_server.fqdn
+        DB_USER     = "coco"
+        DB_PASSWORD = random_password.postgresql_password.result
+        DB_NAME     = "coco"
+        DB_PORT     = 5432
+        AZURE_STORAGE_ACCOUNT_NAME = azurerm_storage_account.storage.name
+        AZURE_STORAGE_ACCOUNT_KEY  = azurerm_storage_account.storage.primary_access_key
+        AZURE_STORAGE_CONTAINER_NAME = azurerm_storage_container.storage_container.name
+      }
+    )
   }
 
   os_profile_linux_config {
