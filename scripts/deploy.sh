@@ -17,8 +17,9 @@ ssh-keyscan -H "$ssh_host_name" >> ~/.ssh/known_hosts
 
 pwd
 ls -la
-scp -r -i ./ssh_private_key ./docker/docker-compose.yml "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"
-scp -r -i ./ssh_private_key ./caddy/Caddyfile "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"/caddy
+ls -la coco-infrastructure
+scp -r -i ./ssh_private_key ./coco-infrastructure/docker/docker-compose.yml "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"
+scp -r -i ./ssh_private_key ./coco-infrastructure/caddy/Caddyfile "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"/caddy
 
 ssh -i ./ssh_private_key "$ssh_user_name"@"$ssh_host_name" <<"EOC"
   cd "$ssh_dist_path"
