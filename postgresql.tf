@@ -14,3 +14,11 @@ resource "azurerm_postgresql_server" "postgresql_server" {
   version                      = "11"
   ssl_enforcement_enabled      = true
 }
+
+resource "azurerm_postgresql_firewall_rule" "postgresql_firewall_rule" {
+  name                = "AllowAllWindowsAzureIps"
+  server_name         = azurerm_postgresql_server.postgresql_server.name
+  resource_group_name = azurerm_resource_group.region.name
+  start_ip_address    = azurerm_public_ip.public_ip.ip_address
+  end_ip_address      = azurerm_public_ip.public_ip.ip_address
+}
