@@ -15,6 +15,15 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile {
     computer_name  = "coco-vm"
     admin_username = "coco"
+
+    custom_data = <<-CUSTOM_DATA
+      #!/bin/bash
+      echo "export DB_HOST=${azurerm_postgresql_server.postgresql_server.fqdn}" >> /etc/profile
+      echo "export DB_USER=coco" >> /etc/profile
+      echo "export DB_PASSWORD=${random_password.postgresql_password.result}" >> /etc/profile
+      echo "export DB_NAME=coco" >> /etc/profile
+      echo "export DB_PORT=5432" >> /etc/profile
+    CUSTOM_DATA
   }
 
   os_profile_linux_config {
