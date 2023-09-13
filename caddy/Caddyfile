@@ -2,7 +2,7 @@
     email me@momee.mt
 }
 
-coco.momee.mt {
+api.coco.momee.mt {
     reverse_proxy coco:8181
     
     log {
