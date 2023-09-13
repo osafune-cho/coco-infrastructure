@@ -42,5 +42,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v22
-      - run: nix-env -f ./nix/shellcheck.nix -i
+      - run: nix-env -f ./nix/pkgs.nix -iA shellcheck
       - run: shellcheck -x -s bash **/*.sh
