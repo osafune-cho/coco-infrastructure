@@ -15,8 +15,8 @@ ssh-add ./ssh_private_key
 mkdir -p ~/.ssh/
 ssh-keyscan -H "$ssh_host_name" >> ~/.ssh/known_hosts
 
-scp -r -i ./ssh_private_key ./coco-infrastructure/docker/docker-compose.yml "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"/docker-compose.yml
-scp -r -i ./ssh_private_key ./coco-infrastructure/caddy/Caddyfile "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"/caddy/Caddyfile
+scp -r -i ./ssh_private_key ./coco-infrastructure/docker/docker-compose.yml "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"
+scp -r -i ./ssh_private_key ./coco-infrastructure/caddy "$ssh_user_name"@"$ssh_host_name":"$ssh_dist_path"
 
 ssh -i ./ssh_private_key "$ssh_user_name"@"$ssh_host_name" <<"EOC"
   cd "$ssh_dist_path"
