@@ -1,14 +1,6 @@
 name: CI
 
-on:
-  push:
-    paths:
-      - '**.nix'
-      - '**.tf'
-  pull_request:
-    paths:
-      - '**.nix'
-      - '**.tf'
+on: [push, pull_request]
 
 jobs:
   nixpkgs-fmt:
