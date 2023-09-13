@@ -24,4 +24,4 @@ runs:
         ssh_dist_path: ${{ inputs.ssh_dist_path }}
       run: |
         "${{ github.action_path }}/../../../scripts/deploy.sh" \
-          "$SSH_PRIVATE_KEY" "$SSH_HOST_NAME" "$SSH_USER_NAME" "$SSH_DIST_PATH"
+          "$ssh_private_key" "$ssh_host_name" "$ssh_user_name" "$ssh_dist_path"
