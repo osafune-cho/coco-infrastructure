@@ -1,0 +1,26 @@
+version: '3'
+services:
+  coco:
+    container_name: coco
+    image: ghcr.io/osafune-cho/coco:latest
+    restart: always
+    ports:
+      - 8181:8181
+    environment:
+      DB_HOST: $DB_HOST
+      DB_PORT: $DB_PORT
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      AZURE_STORAGE_ACCOUNT_NAME: $AZURE_STORAGE_ACCOUNT_NAME
+      AZURE_STORAGE_ACCOUNT_KEY: $AZURE_STORAGE_ACCOUNT_KEY
+      AZURE_STORAGE_CONTAINER_NAME: $AZURE_STORAGE_CONTAINER_NAME
+  caddy:
+    image: caddy:2.7.4-alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy/config:/config
+      - caddy/data:/data

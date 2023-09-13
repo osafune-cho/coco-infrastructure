@@ -5,3 +5,6 @@
 /result-*
 .envrc
 .direnv
+
+caddy/config
+caddy/data
