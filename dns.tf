@@ -2,8 +2,8 @@ resource "cloudflare_record" "frontend" {
   name    = "coco"
   proxied = false
   ttl     = 1
-  type    = "CNAME"
-  value   = "cname.vercel-dns.com"
+  type    = "TXT"
+  value   = "vc-domain-verify=coco.momee.mt,40faf3af9d184a0678cf"
   zone_id = var.cloudflare_zone_id
 }
 
