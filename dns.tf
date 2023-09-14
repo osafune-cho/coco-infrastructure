@@ -1,5 +1,5 @@
 resource "cloudflare_record" "frontend" {
-  name    = "coco"
+  name    = "_vercel"
   proxied = false
   ttl     = 1
   type    = "TXT"
