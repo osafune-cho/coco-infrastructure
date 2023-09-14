@@ -9,3 +9,7 @@ variable "cloudflare_api_token" {
 variable "cloudflare_zone_id" {
   type = string
 }
+
+variable "vercel_api_token" {
+  type = string
+}

@@ -16,6 +16,11 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "=4.10.0"
     }
+
+    vercel = {
+      source  = "vercel/vercel"
+      version = "=0.15.1"
+    }
   }
 
   backend "remote" {

@@ -24,3 +24,11 @@ provider "registry.terraform.io/hashicorp/random" {
     "h1:ZPcwEUD7V8rMHJgo62bw3xgIrpMhapU3z9DKxV9liU0=",
   ]
 }
+
+provider "registry.terraform.io/vercel/vercel" {
+  version     = "0.15.1"
+  constraints = "0.15.1"
+  hashes = [
+    "h1:aOBVeVFrqaEu7uw5tADOMWSbZ4J4uARXqxN51W/A+wY=",
+  ]
+}
